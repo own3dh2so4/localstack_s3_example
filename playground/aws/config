@@ -1,0 +1,4 @@
+[profile localstack]
+output = json
+endpoint_url = http://localstack:4566
+region = us-east-1

@@ -1,0 +1,25 @@
+version: '3.7'
+
+
+services:
+  debian:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - localstack
+    env_file:
+      - .env.debian
+    volumes:
+      - ./playground/aws:/root/.aws:ro
+
+
+  localstack:
+    image: docker.io/localstack/localstack:3.1
+    ports:
+      - "4566:4566"
+    env_file:
+      - .env.localstack
+    volumes:
+      - ./playground/localstack:/etc/localstack/init/ready.d/:ro
+      - ./playground/aws:/root/.aws:ro
